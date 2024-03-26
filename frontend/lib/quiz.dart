@@ -1,9 +1,12 @@
-import 'package:adv_basics/question_screen.dart';
-import 'package:adv_basics/screens/auth.dart';
-import 'package:adv_basics/screens/chat.dart';
-import 'package:adv_basics/start_screen.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:adv_basics/screens/auth.dart';
+
+import 'package:adv_basics/screens/splash.dart';
+import 'package:adv_basics/screens/chat.dart';
+
+import 'package:adv_basics/start_screen.dart';
+import 'package:adv_basics/question_screen.dart';
 
 class Quiz extends StatefulWidget {
   const Quiz({super.key});
@@ -29,6 +32,10 @@ class _QuizState extends State<Quiz> {
         home: StreamBuilder(
             stream: FirebaseAuth.instance.authStateChanges(),
             builder: (ctx, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const SplashScreen();
+              }
+
               if (snapshot.hasData) {
                 return const ChatScreen();
               }
