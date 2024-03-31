@@ -1,7 +1,14 @@
+import 'package:adv_basics/data/questions_data.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class QuestionScreen extends StatefulWidget {
-  const QuestionScreen({super.key});
+  const QuestionScreen({
+    super.key,
+    required this.onAnswer,
+  });
+
+  final void Function() onAnswer;
 
   @override
   State<QuestionScreen> createState() {
@@ -10,8 +17,50 @@ class QuestionScreen extends StatefulWidget {
 }
 
 class _QuestionScreen extends State<QuestionScreen> {
+  var currentQuestionIndex = 0;
+
+  void answerQuestion(String answer) {
+    setState(() {
+      widget.onAnswer();
+      currentQuestionIndex++;
+    });
+  }
+
   @override
   Widget build(context) {
-    return const Text('QuestionScreen');
+    final currentQuestion = questions[currentQuestionIndex];
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('FlutterChat'),
+        actions: [
+          IconButton(
+            onPressed: () {
+              FirebaseAuth.instance.signOut();
+            },
+            icon: Icon(
+              Icons.exit_to_app,
+              color: Theme.of(context).colorScheme.primary,
+            ),
+          ),
+        ],
+      ),
+      body: SizedBox(
+        width: double.infinity,
+        child: Container(
+          margin: const EdgeInsets.all(40),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Text(
+                currentQuestion.text,
+                textAlign: TextAlign.center,
+                style: const TextStyle(color: Colors.black),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
