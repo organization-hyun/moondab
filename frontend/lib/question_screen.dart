@@ -1,6 +1,7 @@
 import 'package:adv_basics/data/questions_data.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class QuestionScreen extends StatefulWidget {
   const QuestionScreen({
@@ -26,12 +27,18 @@ class _QuestionScreen extends State<QuestionScreen> {
     });
   }
 
+  String getTodayInfo() {
+    DateTime now = DateTime.now();
+    DateFormat formatter = DateFormat('MM/dd');
+    return formatter.format(now);
+  }
+
   @override
   Widget build(context) {
     final currentQuestion = questions[currentQuestionIndex];
     return Scaffold(
       appBar: AppBar(
-        title: const Text('FlutterChat'),
+        title: Text(getTodayInfo()),
         actions: [
           IconButton(
             onPressed: () {
