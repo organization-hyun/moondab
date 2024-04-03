@@ -64,6 +64,24 @@ class _QuestionScreen extends State<QuestionScreen> {
                 textAlign: TextAlign.center,
                 style: const TextStyle(color: Colors.black),
               ),
+              OutlinedButton(
+                  onPressed: () {
+                    setState(() {
+                      if (currentQuestionIndex != 0) {
+                        currentQuestionIndex -= 1;
+                      }
+                    });
+                  },
+                  child: const Text('이전')),
+              OutlinedButton(
+                  onPressed: () {
+                    setState(() {
+                      if (currentQuestionIndex < questions.length - 1) {
+                        currentQuestionIndex += 1;
+                      }
+                    });
+                  },
+                  child: const Text('다음')),
             ],
           ),
         ),
