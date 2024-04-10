@@ -16,4 +16,46 @@ const questions = [
     1,
     3,
   ),
+  Question(
+    '올해 목표를 달성하기 위한 계획은 무엇인가요?',
+    1,
+    4,
+  ),
+  Question(
+    '가장 큰 두려움은 무엇이며, 그것을 어떻게 극복할 계획인가요?',
+    1,
+    5,
+  ),
+  Question(
+    '당신이 지금 삶에서 가장 감사하게 생각하는 것은 무엇인가요?',
+    1,
+    6,
+  ),
+  Question(
+    '올해 배우고 싶은 새로운 기술이나 취미는 무엇인가요?',
+    1,
+    7,
+  ),
+  Question(
+    '최근에 당신에게 큰 영향을 미친 책 또는 영화는 무엇인가요?',
+    1,
+    8,
+  ),
+  Question(
+    '자신을 바꾸고 싶은 한 가지는 무엇인가요?',
+    1,
+    9,
+  ),
+  Question(
+    '어떻게 하면 세상에 긍정적인 변화를 가져올 수 있을지 계획해보세요.',
+    1,
+    10,
+  ),
 ];
+
+Question getQuestion(int month, int day) {
+  final int index =
+      DateTime(2024, month, day).difference(DateTime(2024, 1, 1)).inDays;
+  // 질문의 수가 모자라기 때문에 index 에러 방지
+  return index >= questions.length ? questions[0] : questions[index];
+}

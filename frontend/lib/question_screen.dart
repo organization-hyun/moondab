@@ -94,6 +94,8 @@ class _QuestionScreen extends State<QuestionScreen> {
                     setState(() {
                       if (currentQuestionIndex != 0) {
                         currentQuestionIndex -= 1;
+                        _selectedDate =
+                            _selectedDate.add(const Duration(days: -1));
                       }
                     });
                   },
@@ -103,6 +105,8 @@ class _QuestionScreen extends State<QuestionScreen> {
                     setState(() {
                       if (currentQuestionIndex < questions.length - 1) {
                         currentQuestionIndex += 1;
+                        _selectedDate =
+                            _selectedDate.add(const Duration(days: 1));
                       }
                     });
                   },
