@@ -1,4 +1,5 @@
 import 'package:adv_basics/data/questions_data.dart';
+import 'package:adv_basics/widgets/date_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -33,12 +34,36 @@ class _QuestionScreen extends State<QuestionScreen> {
     return formatter.format(now);
   }
 
+  DateTime _selectedDate = DateTime.now();
+
+  void _onDateChanged(DateTime newDate) {
+    setState(() {
+      _selectedDate = newDate;
+    });
+  }
+
   @override
   Widget build(context) {
     final currentQuestion = questions[currentQuestionIndex];
     return Scaffold(
       appBar: AppBar(
-        title: Text(getTodayInfo()),
+        title: GestureDetector(
+          onTap: () {
+            showModalBottomSheet(
+              context: context,
+              builder: (BuildContext context) {
+                return MonthDayPicker(
+                  initialDate: _selectedDate,
+                  onDateChanged: _onDateChanged,
+                );
+              },
+            );
+          },
+          // child: Text(getTodayInfo()),
+          child: Text(
+            DateFormat('MM/dd').format(_selectedDate),
+          ),
+        ),
         actions: [
           IconButton(
             onPressed: () {
