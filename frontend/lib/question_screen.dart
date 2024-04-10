@@ -89,28 +89,39 @@ class _QuestionScreen extends State<QuestionScreen> {
                 textAlign: TextAlign.center,
                 style: const TextStyle(color: Colors.black),
               ),
-              OutlinedButton(
-                  onPressed: () {
-                    setState(() {
-                      if (currentQuestionIndex != 0) {
-                        currentQuestionIndex -= 1;
-                        _selectedDate =
-                            _selectedDate.add(const Duration(days: -1));
-                      }
-                    });
-                  },
-                  child: const Text('이전')),
-              OutlinedButton(
-                  onPressed: () {
-                    setState(() {
-                      if (currentQuestionIndex < questions.length - 1) {
-                        currentQuestionIndex += 1;
-                        _selectedDate =
-                            _selectedDate.add(const Duration(days: 1));
-                      }
-                    });
-                  },
-                  child: const Text('다음')),
+              const TextField(
+                  decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: '답변',
+              )),
+              OutlinedButton(onPressed: () {}, child: const Text('제출')),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  OutlinedButton(
+                      onPressed: () {
+                        setState(() {
+                          if (currentQuestionIndex != 0) {
+                            currentQuestionIndex -= 1;
+                            _selectedDate =
+                                _selectedDate.add(const Duration(days: -1));
+                          }
+                        });
+                      },
+                      child: const Text('이전')),
+                  OutlinedButton(
+                      onPressed: () {
+                        setState(() {
+                          if (currentQuestionIndex < questions.length - 1) {
+                            currentQuestionIndex += 1;
+                            _selectedDate =
+                                _selectedDate.add(const Duration(days: 1));
+                          }
+                        });
+                      },
+                      child: const Text('다음')),
+                ],
+              )
             ],
           ),
         ),
