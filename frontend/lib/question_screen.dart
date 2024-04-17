@@ -1,4 +1,5 @@
 import 'package:adv_basics/data/questions_data.dart';
+import 'package:adv_basics/models/questions.dart';
 import 'package:adv_basics/widgets/date_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +21,10 @@ class QuestionScreen extends StatefulWidget {
 
 class _QuestionScreen extends State<QuestionScreen> {
   var currentQuestionIndex = 0;
+  var currentQuestion = getQuestion(
+    month: DateTime.now().month,
+    day: DateTime.now().day,
+  );
 
   void answerQuestion(String answer) {
     setState(() {
@@ -39,12 +44,24 @@ class _QuestionScreen extends State<QuestionScreen> {
   void _onDateChanged(DateTime newDate) {
     setState(() {
       _selectedDate = newDate;
+      _syncQuestionAndDate(
+        currentQuestion,
+        _selectedDate,
+      );
+    });
+  }
+
+  void _syncQuestionAndDate(Question currentQuestion, DateTime currentDate) {
+    setState(() {
+      this.currentQuestion = getQuestion(
+        month: currentDate.month.toInt(),
+        day: currentDate.day.toInt(),
+      );
     });
   }
 
   @override
   Widget build(context) {
-    final currentQuestion = questions[currentQuestionIndex];
     return Scaffold(
       appBar: AppBar(
         title: GestureDetector(
@@ -59,7 +76,6 @@ class _QuestionScreen extends State<QuestionScreen> {
               },
             );
           },
-          // child: Text(getTodayInfo()),
           child: Text(
             DateFormat('MM/dd').format(_selectedDate),
           ),
@@ -101,22 +117,18 @@ class _QuestionScreen extends State<QuestionScreen> {
                   OutlinedButton(
                       onPressed: () {
                         setState(() {
-                          if (currentQuestionIndex != 0) {
-                            currentQuestionIndex -= 1;
-                            _selectedDate =
-                                _selectedDate.add(const Duration(days: -1));
-                          }
+                          _selectedDate =
+                              _selectedDate.add(const Duration(days: -1));
+                          _syncQuestionAndDate(currentQuestion, _selectedDate);
                         });
                       },
                       child: const Text('이전')),
                   OutlinedButton(
                       onPressed: () {
                         setState(() {
-                          if (currentQuestionIndex < questions.length - 1) {
-                            currentQuestionIndex += 1;
-                            _selectedDate =
-                                _selectedDate.add(const Duration(days: 1));
-                          }
+                          _selectedDate =
+                              _selectedDate.add(const Duration(days: 1));
+                          _syncQuestionAndDate(currentQuestion, _selectedDate);
                         });
                       },
                       child: const Text('다음')),
