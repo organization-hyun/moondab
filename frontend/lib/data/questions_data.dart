@@ -1,4 +1,5 @@
 import 'package:adv_basics/models/questions.dart';
+import 'package:flutter/material.dart';
 
 const questions = [
   Question(
@@ -63,9 +64,15 @@ const questions = [
   ),
 ];
 
-Question getQuestion(int month, int day) {
-  final int index =
-      DateTime(2024, month, day).difference(DateTime(2024, 1, 1)).inDays;
+Question getQuestion({required int month, required int day}) {
+  DateTime now = DateTime.now();
+  DateTime fromDate = DateTime(now.year, now.month, now.day);
+  DateTime toDate = DateTime(2024, month, day);
+
+  final int index = toDate.difference(fromDate).inDays;
+
   // 질문의 수가 모자라기 때문에 index 에러 방지
-  return index >= questions.length ? questions[0] : questions[index];
+  return index >= questions.length || index < 0
+      ? questions[0]
+      : questions[index];
 }
