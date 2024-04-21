@@ -68,10 +68,11 @@ Answer _answerDeserialize(
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
-  final object = Answer();
+  final object = Answer(
+    reader.readLong(offsets[0]),
+    reader.readString(offsets[1]),
+  );
   object.id = id;
-  object.questionId = reader.readLong(offsets[0]);
-  object.text = reader.readString(offsets[1]);
   return object;
 }
 

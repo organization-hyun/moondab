@@ -1,10 +1,11 @@
 import 'dart:async';
 
 import 'package:adv_basics/models/answer.dart';
+import 'package:flutter/material.dart';
 import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
 
-class AnswerDatabase {
+class AnswerDatabase extends ChangeNotifier {
   static late Isar isar;
 
   // INIT
@@ -32,6 +33,7 @@ class AnswerDatabase {
         await isar.answers.filter().questionIdEqualTo(questionId).findAll();
     currentAnswers.clear();
     currentAnswers.addAll(fetchedAnswers);
+    notifyListeners();
   }
 
   // UPDATE
