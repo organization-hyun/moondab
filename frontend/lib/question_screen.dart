@@ -1,4 +1,4 @@
-import 'package:adv_basics/data/questions_data.dart';
+import 'package:adv_basics/data/question_repository.dart';
 import 'package:adv_basics/models/questions.dart';
 import 'package:adv_basics/widgets/date_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -6,12 +6,14 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class QuestionScreen extends StatefulWidget {
+  final void Function() onAnswer;
+  final QuestionRepository questionRepository;
+
   const QuestionScreen({
     super.key,
     required this.onAnswer,
+    required this.questionRepository,
   });
-
-  final void Function() onAnswer;
 
   @override
   State<QuestionScreen> createState() {
@@ -21,23 +23,38 @@ class QuestionScreen extends StatefulWidget {
 
 class _QuestionScreen extends State<QuestionScreen> {
   var currentQuestionIndex = 0;
-  var currentQuestion = getQuestion(
-    month: DateTime.now().month,
-    day: DateTime.now().day,
-  );
+  late Question currentQuestion;
 
-  void answerQuestion(String answer) {
+  @override
+  void initState() {
+    super.initState();
+    _loadQuestion();
+  }
+
+  void _loadQuestion() {
+    final now = DateTime.now();
+    final question = widget.questionRepository.getQuestionByMonthDay(
+      month: now.month,
+      day: now.day,
+    );
     setState(() {
-      widget.onAnswer();
-      currentQuestionIndex++;
+      currentQuestion = question;
     });
   }
 
-  String getTodayInfo() {
-    DateTime now = DateTime.now();
-    DateFormat formatter = DateFormat('MM/dd');
-    return formatter.format(now);
-  }
+  //todo: 삭제?
+  // void answerQuestion(String answer) {
+  //   setState(() {
+  //     widget.onAnswer();
+  //     currentQuestionIndex++;
+  //   });
+  // }
+
+  // String getTodayInfo() {
+  //   DateTime now = DateTime.now();
+  //   DateFormat formatter = DateFormat('MM/dd');
+  //   return formatter.format(now);
+  // }
 
   DateTime _selectedDate = DateTime.now();
 
@@ -53,7 +70,7 @@ class _QuestionScreen extends State<QuestionScreen> {
 
   void _syncQuestionAndDate(Question currentQuestion, DateTime currentDate) {
     setState(() {
-      this.currentQuestion = getQuestion(
+      this.currentQuestion = widget.questionRepository.getQuestionByMonthDay(
         month: currentDate.month.toInt(),
         day: currentDate.day.toInt(),
       );
