@@ -1,5 +1,4 @@
 import 'package:adv_basics/models/questions.dart';
-import 'package:flutter/material.dart';
 
 const questions = [
   Question(
@@ -54,7 +53,7 @@ const questions = [
   ),
 ];
 
-Question getQuestion({required int month, required int day}) {
+Question getDummyQuestionByMonthDay({required int month, required int day}) {
   DateTime now = DateTime.now();
   DateTime fromDate = DateTime(now.year, now.month, now.day);
   DateTime toDate = DateTime(2024, month, day);

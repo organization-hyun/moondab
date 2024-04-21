@@ -1,3 +1,4 @@
+import 'package:adv_basics/data/question_repository.dart';
 import 'package:adv_basics/question_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -36,6 +37,7 @@ class _QuestionState extends State<Question> {
               if (snapshot.hasData) {
                 return QuestionScreen(
                   onAnswer: () {},
+                  questionRepository: DummyQuestionRepositoryImpl(),
                 );
               }
 
