@@ -1,6 +1,8 @@
+import 'package:adv_basics/models/answer_database.dart';
 import 'package:adv_basics/question.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:provider/provider.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -8,6 +10,12 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  await AnswerDatabase.initialize();
 
-  runApp(const Question());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => AnswerDatabase(),
+      child: const Question(),
+    ),
+  );
 }
