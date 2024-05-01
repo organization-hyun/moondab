@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class QuestionService {
 
     public QuestionDto getQuestion(Long id) {
-        return new QuestionDto(id);
+        return new QuestionDto(id, "오늘 기분이 어떠신가요?");
     }
 
 }

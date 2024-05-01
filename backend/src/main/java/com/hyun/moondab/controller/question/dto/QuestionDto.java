@@ -8,5 +8,6 @@ import lombok.Getter;
 public class QuestionDto {
 
     private Long id;
+    private String content;
 
 }
