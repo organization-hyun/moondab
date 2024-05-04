@@ -1,8 +1,10 @@
 package com.hyun.moondab.domain.group;
 
 import com.hyun.moondab.domain.group.post.GroupPost;
+import com.hyun.moondab.domain.group.user.GroupUser;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -24,12 +26,21 @@ public class Group {
     @OneToMany(mappedBy = "group", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<GroupPost> groupPosts = new ArrayList<>();
 
+    @OneToMany(mappedBy = "group", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<GroupUser> groupUsers = new ArrayList<>();
+
     public static Group create(String title) {
         return new Group(title);
     }
 
+    @Builder
     private Group(String title) {
         this.title = title;
+    }
+
+    public void addGroupUser(GroupUser groupUser) {
+        this.groupUsers.add(groupUser);
+        groupUser.setGroup(this);
     }
 
     public void addGroupPost(GroupPost groupPost) {

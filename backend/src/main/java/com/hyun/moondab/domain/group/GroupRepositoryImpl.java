@@ -16,7 +16,7 @@ public class GroupRepositoryImpl implements GroupRepositoryCustom {
     @Override
     public List<Group> findAllByUserId(Long userId) {
         return queryFactory.selectFrom(group)
-                .leftJoin(groupUser).on(group.id.eq(groupUser.groupId))
+                .leftJoin(group.groupUsers, groupUser)
                 .where(groupUser.userId.eq(userId))
                 .fetch();
     }
