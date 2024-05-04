@@ -38,9 +38,9 @@ public class Group {
         this.title = title;
     }
 
-    public void addGroupUser(GroupUser groupUser) {
+    public void addGroupUser(Long userId) {
+        GroupUser groupUser = GroupUser.create(this, userId);
         this.groupUsers.add(groupUser);
-        groupUser.setGroup(this);
     }
 
     public void addGroupPost(GroupPost groupPost) {

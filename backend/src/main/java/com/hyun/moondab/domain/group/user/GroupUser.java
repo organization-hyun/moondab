@@ -21,12 +21,13 @@ public class GroupUser {
 
     private Long userId;
 
-    public void setGroup(Group group) {
-        this.group = group;
+    public static GroupUser create(Group group, Long userId) {
+        return new GroupUser(group, userId);
     }
 
     @Builder
-    private GroupUser(Long userId) {
+    private GroupUser(Group group, Long userId) {
+        this.group = group;
         this.userId = userId;
     }
 

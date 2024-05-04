@@ -1,6 +1,5 @@
 package com.hyun.moondab.domain.group;
 
-import com.hyun.moondab.domain.group.user.GroupUser;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -26,26 +25,20 @@ class GroupTest {
     void add_group_user() {
         //given
         Group group = createGroup();
-        GroupUser groupUser = createGroupUser(1L);
 
         //when
-        group.addGroupUser(groupUser);
+        group.addGroupUser(1L);
 
         //then
         assertThat(group.getGroupUsers()).hasSize(1)
-                .containsExactly(groupUser);
-        assertThat(groupUser.getGroup()).isEqualTo(group);
+                .extracting("userId")
+                .containsExactly(1L);
+        assertThat(group.getGroupUsers().get(0).getGroup()).isEqualTo(group);
     }
 
     private Group createGroup() {
         return Group.builder()
                 .title("기본 그룹")
-                .build();
-    }
-
-    private GroupUser createGroupUser(Long userId) {
-        return GroupUser.builder()
-                .userId(userId)
                 .build();
     }
 

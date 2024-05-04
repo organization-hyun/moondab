@@ -16,6 +16,7 @@ public class InitData implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) {
         Group group = Group.create("기본 그룹");
+        group.addGroupUser(1L);
         groupRepository.save(group);
     }
 
