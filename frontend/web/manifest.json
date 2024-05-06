@@ -1,6 +1,6 @@
 {
-    "name": "adv_basics",
-    "short_name": "adv_basics",
+    "name": "moondab",
+    "short_name": "moondab",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
