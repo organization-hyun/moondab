@@ -1,5 +1,5 @@
-import 'package:adv_basics/models/group.dart';
 import 'package:flutter/material.dart';
+import 'package:moondab/models/group.dart';
 
 class GroupItem extends StatelessWidget {
   const GroupItem(this.group, {super.key});

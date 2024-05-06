@@ -1,6 +1,6 @@
-import 'package:adv_basics/models/group.dart';
-import 'package:adv_basics/widgets/groups_list/groups_list.dart';
 import 'package:flutter/material.dart';
+import 'package:moondab/models/group.dart';
+import 'package:moondab/widgets/groups_list/groups_list.dart';
 
 class GroupScreen extends StatefulWidget {
   const GroupScreen({super.key});

@@ -1,6 +1,6 @@
-import 'package:adv_basics/models/group.dart';
-import 'package:adv_basics/widgets/groups_list/groups_list.dart';
 import 'package:flutter/material.dart';
+import 'package:moondab/models/group.dart';
+import 'package:moondab/widgets/groups_list/groups_list.dart';
 
 class Groups extends StatefulWidget {
   const Groups({super.key});
@@ -16,11 +16,13 @@ class _GroupState extends State<Groups> {
     Group(
       id: 1,
       title: "기본 그룹1",
+      numOfPosts: 5,
       numOfUsers: 3,
     ),
     Group(
       id: 2,
       title: "기본 그룹2",
+      numOfPosts: 5,
       numOfUsers: 2,
     ),
   ];

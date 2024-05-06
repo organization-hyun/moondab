@@ -1,6 +1,6 @@
-import 'package:adv_basics/models/group.dart';
-import 'package:adv_basics/widgets/groups_list/groups_item.dart';
 import 'package:flutter/material.dart';
+import 'package:moondab/models/group.dart';
+import 'package:moondab/widgets/groups_list/groups_item.dart';
 
 class GroupsList extends StatelessWidget {
   const GroupsList({
