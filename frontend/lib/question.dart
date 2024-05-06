@@ -27,38 +27,22 @@ class _QuestionState extends State<Question> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        home: StreamBuilder(
-            stream: FirebaseAuth.instance.authStateChanges(),
-            builder: (ctx, snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return const SplashScreen();
-              }
+      home: StreamBuilder(
+          stream: FirebaseAuth.instance.authStateChanges(),
+          builder: (ctx, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const SplashScreen();
+            }
 
-              if (snapshot.hasData) {
-                return QuestionScreen(
-                  questionRepository: DummyQuestionRepositoryImpl(),
-                );
-              }
+            if (snapshot.hasData) {
+              return QuestionScreen(
+                questionRepository: DummyQuestionRepositoryImpl(),
+              );
+              // return const Groups();
+            }
 
-              return const AuthScreen();
-            })
-
-        // Scaffold(
-        //   body: Container(
-        //       decoration: const BoxDecoration(
-        //         gradient: LinearGradient(
-        //           colors: [
-        //             Color.fromARGB(255, 98, 51, 180),
-        //             Color.fromARGB(255, 83, 29, 176),
-        //           ],
-        //           begin: Alignment.topLeft,
-        //           end: Alignment.bottomRight,
-        //         ),
-        //       ),
-        //       child: activeScreen == 'start-screen'
-        //           ? StartScreen(switchScreen)
-        //           : const QuestionScreen()),
-        // ),
-        );
+            return const AuthScreen();
+          }),
+    );
   }
 }

@@ -3,7 +3,7 @@ import 'package:adv_basics/data/questions_data.dart';
 import 'package:adv_basics/models/answer.dart';
 import 'package:adv_basics/models/answer_database.dart';
 import 'package:adv_basics/models/questions.dart';
-import 'package:adv_basics/screens/groups_screen.dart';
+import 'package:adv_basics/screens/group_screen.dart';
 import 'package:adv_basics/widgets/date_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -211,7 +211,7 @@ class _QuestionScreen extends State<QuestionScreen> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const GroupsScreen(),
+                  builder: (context) => const GroupScreen(),
                 ),
               );
             }
