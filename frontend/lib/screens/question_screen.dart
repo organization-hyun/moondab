@@ -26,6 +26,7 @@ class QuestionScreen extends StatefulWidget {
 class _QuestionScreen extends State<QuestionScreen> {
   // text controller to access what the user typed
   final textController = TextEditingController();
+  int _seletedBottomNavigationIndex = 0;
 
   // create an answer
   void createAnswer() {
@@ -147,7 +148,6 @@ class _QuestionScreen extends State<QuestionScreen> {
   Widget build(context) {
     final answerDatabase = context.watch<AnswerDatabase>();
     List<Answer> currentAnswers = answerDatabase.currentAnswers;
-
     return Scaffold(
       appBar: AppBar(
         title: GestureDetector(
@@ -177,6 +177,36 @@ class _QuestionScreen extends State<QuestionScreen> {
             ),
           ),
         ],
+      ),
+      bottomNavigationBar: SizedBox(
+        height: 150,
+        child: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed, // item이 4개 이상일 경우 추가
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'Home',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.groups),
+              label: 'Group',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.person),
+              label: 'Profile',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.settings),
+              label: 'Settings',
+            ),
+          ],
+
+          currentIndex: _seletedBottomNavigationIndex,
+          selectedItemColor: Colors.blueAccent,
+          onTap: (int index) {
+            _seletedBottomNavigationIndex = index;
+          },
+        ),
       ),
       body: SizedBox(
         width: double.infinity,
