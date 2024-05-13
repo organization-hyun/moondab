@@ -18,12 +18,14 @@ class _GroupScreenState extends State<GroupScreen> {
       title: "기본 그룹1",
       numOfPosts: 5,
       numOfUsers: 3,
+      latestDateTime: DateTime.now(),
     ),
     Group(
       id: 2,
       title: "기본 그룹2",
       numOfPosts: 0,
       numOfUsers: 2,
+      latestDateTime: DateTime.now(),
     ),
   ];
 
