@@ -1,4 +1,13 @@
-enum Category { love, friendship, work }
+import 'package:flutter/material.dart';
+
+enum Category { love, work, book, movie }
+
+const categoryIcons = {
+  Category.love: Icons.favorite,
+  Category.work: Icons.work,
+  Category.book: Icons.book,
+  Category.movie: Icons.movie,
+};
 
 class Group {
   Group({
