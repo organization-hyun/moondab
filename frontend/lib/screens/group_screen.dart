@@ -19,6 +19,7 @@ class _GroupScreenState extends State<GroupScreen> {
       numOfPosts: 5,
       numOfUsers: 3,
       latestDateTime: DateTime.now(),
+      category: Category.love,
     ),
     Group(
       id: 2,
@@ -26,6 +27,7 @@ class _GroupScreenState extends State<GroupScreen> {
       numOfPosts: 0,
       numOfUsers: 2,
       latestDateTime: DateTime.now(),
+      category: Category.work,
     ),
   ];
 
