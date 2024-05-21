@@ -30,9 +30,10 @@ class GroupItem extends StatelessWidget {
                 const Spacer(),
                 Row(
                   children: [
-                    const Icon(Icons.chat_outlined),
+                    Icon(categoryIcons[group.category]),
+                    Text('${group.numOfPosts.toString()}개'),
                     const SizedBox(width: 8),
-                    Text(group.numOfPosts.toString()),
+                    Text(group.formattedDate),
                   ],
                 ),
               ],

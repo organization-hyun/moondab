@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+
+final formatter = DateFormat.yMd();
 
 enum Category { love, work, book, movie }
 
@@ -25,4 +28,8 @@ class Group {
   final int numOfUsers;
   final DateTime latestDateTime;
   final Category category;
+
+  String get formattedDate {
+    return formatter.format(latestDateTime);
+  }
 }
