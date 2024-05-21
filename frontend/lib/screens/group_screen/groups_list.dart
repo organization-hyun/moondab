@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:moondab/models/group.dart';
-import 'package:moondab/screens/group_screen/groups_item.dart';
+import 'package:moondab/screens/group_screen/group_item.dart';
 
 class GroupsList extends StatelessWidget {
   const GroupsList({

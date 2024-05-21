@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:moondab/models/group.dart';
 import 'package:moondab/screens/group_screen/groups_list.dart';
+import 'package:moondab/screens/group_screen/new_group.dart';
 
 class GroupScreen extends StatefulWidget {
   const GroupScreen({super.key});
@@ -34,9 +35,7 @@ class _GroupScreenState extends State<GroupScreen> {
   void _openAddGroupOverlay() {
     showModalBottomSheet(
       context: context,
-      builder: (ctx) => const Text(
-        'Modal buttom sheet',
-      ),
+      builder: (ctx) => const NewGroup(),
     );
   }
 
