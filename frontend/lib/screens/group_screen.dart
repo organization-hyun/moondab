@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:moondab/models/group.dart';
-import 'package:moondab/widgets/groups_list/groups_list.dart';
+import 'package:moondab/screens/group_screen/groups_list.dart';
 
 class GroupScreen extends StatefulWidget {
   const GroupScreen({super.key});
@@ -31,6 +31,15 @@ class _GroupScreenState extends State<GroupScreen> {
     ),
   ];
 
+  void _openAddGroupOverlay() {
+    showModalBottomSheet(
+      context: context,
+      builder: (ctx) => const Text(
+        'Modal buttom sheet',
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,7 +47,7 @@ class _GroupScreenState extends State<GroupScreen> {
         title: const Text('내 그룹'),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: _openAddGroupOverlay,
             icon: const Icon(Icons.add),
           )
         ],
