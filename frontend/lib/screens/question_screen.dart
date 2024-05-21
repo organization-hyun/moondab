@@ -3,7 +3,7 @@ import 'package:moondab/data/questions_data.dart';
 import 'package:moondab/models/answer.dart';
 import 'package:moondab/models/answer_database.dart';
 import 'package:moondab/models/questions.dart';
-import 'package:moondab/screens/groups_screen.dart';
+import 'package:moondab/screens/group_screen.dart';
 import 'package:moondab/screens/profile_screen.dart';
 import 'package:moondab/widgets/date_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -212,7 +212,7 @@ class _QuestionScreen extends State<QuestionScreen> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const GroupsScreen(),
+                  builder: (context) => const GroupScreen(),
                 ),
               );
             } else if (index == 2) {
