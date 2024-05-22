@@ -1,4 +1,5 @@
 name: "⚙️ [BE] 기능 개발"
+title: "[BE] "
 description: "개발 시간 🫡"
 body:
   - type: textarea
