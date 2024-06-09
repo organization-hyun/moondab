@@ -15,19 +15,17 @@ class GroupScreen extends StatefulWidget {
 class _GroupScreenState extends State<GroupScreen> {
   final List<Group> _userGroups = [
     Group(
-      id: 1,
       title: "기본 그룹1",
       numOfPosts: 5,
       numOfUsers: 3,
-      latestDateTime: DateTime.now(),
+      createDateTime: DateTime.now(),
       category: Category.love,
     ),
     Group(
-      id: 2,
       title: "기본 그룹2",
       numOfPosts: 0,
       numOfUsers: 2,
-      latestDateTime: DateTime.now(),
+      createDateTime: DateTime.now(),
       category: Category.work,
     ),
   ];
@@ -35,8 +33,14 @@ class _GroupScreenState extends State<GroupScreen> {
   void _openAddGroupOverlay() {
     showModalBottomSheet(
       context: context,
-      builder: (ctx) => const NewGroup(),
+      builder: (ctx) => NewGroup(onAddGroup: _addGroup),
     );
+  }
+
+  void _addGroup(Group group) {
+    setState(() {
+      _userGroups.add(group);
+    });
   }
 
   @override
