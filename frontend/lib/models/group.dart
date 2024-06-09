@@ -14,22 +14,20 @@ const categoryIcons = {
 
 class Group {
   Group({
-    required this.id,
     required this.title,
     required this.numOfPosts,
     required this.numOfUsers,
-    required this.latestDateTime,
+    required this.createDateTime,
     required this.category,
   });
 
-  final int id;
   final String title;
   final int numOfPosts;
   final int numOfUsers;
-  final DateTime latestDateTime;
-  final Category category;
+  final DateTime createDateTime;
+  final Category? category;
 
   String get formattedDate {
-    return formatter.format(latestDateTime);
+    return formatter.format(createDateTime);
   }
 }
