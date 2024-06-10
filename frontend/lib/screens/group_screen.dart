@@ -32,6 +32,7 @@ class _GroupScreenState extends State<GroupScreen> {
 
   void _openAddGroupOverlay() {
     showModalBottomSheet(
+      isScrollControlled: true,
       context: context,
       builder: (ctx) => NewGroup(onAddGroup: _addGroup),
     );
