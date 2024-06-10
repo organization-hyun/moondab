@@ -56,7 +56,11 @@ class _NewGroup extends State<NewGroup> {
   @override
   Widget build(BuildContext context) {
     return Padding(
+<<<<<<< HEAD
       padding: const EdgeInsets.fromLTRB(16, 48, 16, 16),
+=======
+      padding: const EdgeInsets.all(16),
+>>>>>>> 7f96b3588e6006ddbfe559f7609bf31806630535
       child: Column(
         children: [
           TextField(
