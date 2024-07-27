@@ -1,25 +1,44 @@
 package com.hyun.moondab.domain.answer;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.hyun.moondab.domain.question.Question;
+import com.hyun.moondab.domain.user.User;
+import jakarta.persistence.*;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 
 @Entity
+@Table(name = "answers")
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Answer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long userId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
 
-    private Long questionId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "question_id")
+    private Question question;
 
     private String content;
 
     private Integer views;
 
     private Boolean isPublic;
+
+    public static Answer create(User user, Question question, String content, Boolean isPublic) {
+        return new Answer(user, question, content, isPublic);
+    }
+
+    private Answer(User user, Question question, String content, Boolean isPublic) {
+        this.user = user;
+        this.question = question;
+        this.content = content;
+        this.isPublic = isPublic;
+        this.views = 0;
+    }
 
 }
