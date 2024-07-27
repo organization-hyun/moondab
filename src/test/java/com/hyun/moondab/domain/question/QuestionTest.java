@@ -7,6 +7,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.tuple;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 class QuestionTest {
 
@@ -31,6 +32,24 @@ class QuestionTest {
                         tuple(month1, day1, content),
                         tuple(month12, day31, content)
                 );
+    }
+
+    @DisplayName("문항 생성 month 예외 케이스")
+    @Test
+    void create_month_exception() {
+        //given
+        String content = "올해 꼭 이루고 싶은 목표가 있나요?";
+        int day = 1;
+        int month0 = 0;
+        int month13 = 13;
+
+        //when & then
+        assertThatThrownBy(() -> Question.create(month0, day, content))
+                .isInstanceOf(IllegalStateException.class)
+                .hasMessage("월은 1부터 12까지 가능합니다.");
+        assertThatThrownBy(() -> Question.create(month13, day, content))
+                .isInstanceOf(IllegalStateException.class)
+                .hasMessage("월은 1부터 12까지 가능합니다.");
     }
 
 }
