@@ -4,6 +4,7 @@ import com.hyun.moondab.domain.question.Question;
 import com.hyun.moondab.domain.user.User;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.NoArgsConstructor;
 
 @Entity
@@ -33,12 +34,17 @@ public class Answer {
         return new Answer(user, question, content, isPublic);
     }
 
+    @Builder
     private Answer(User user, Question question, String content, Boolean isPublic) {
         this.user = user;
         this.question = question;
         this.content = content;
         this.isPublic = isPublic;
         this.views = 0;
+    }
+
+    public void incrementViews() {
+        this.views++;
     }
 
 }
