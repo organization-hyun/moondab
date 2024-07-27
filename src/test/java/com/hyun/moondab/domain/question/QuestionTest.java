@@ -52,4 +52,22 @@ class QuestionTest {
                 .hasMessage("월은 1부터 12까지 가능합니다.");
     }
 
+    @DisplayName("문항 생성 day 예외 케이스")
+    @Test
+    void create_day_exception() {
+        //given
+        String content = "올해 꼭 이루고 싶은 목표가 있나요?";
+        int month = 1;
+        int day0 = 0;
+        int day32 = 32;
+
+        //when & then
+        assertThatThrownBy(() -> Question.create(month, day0, content))
+                .isInstanceOf(IllegalStateException.class)
+                .hasMessage("일은 1부터 31까지 가능합니다.");
+        assertThatThrownBy(() -> Question.create(month, day32, content))
+                .isInstanceOf(IllegalStateException.class)
+                .hasMessage("일은 1부터 31까지 가능합니다.");
+    }
+
 }
