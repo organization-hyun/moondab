@@ -17,8 +17,28 @@ public class Question {
 
     private String content;
 
-    private Integer month;
+    private Integer questionMonth;
 
-    private Integer day;
+    private Integer questionDay;
+
+    public static Question create(int questionMonth, int questionDay, String content) {
+        validateDate(questionMonth, questionDay);
+        return new Question(content, questionMonth, questionDay);
+    }
+
+    private static void validateDate(int questionMonth, int questionDay) {
+        if (!(1 <= questionMonth && questionMonth <= 12)) {
+            throw new IllegalStateException("월은 1부터 12까지 가능합니다.");
+        }
+        if (!(1 <= questionDay && questionDay <= 31)) {
+            throw new IllegalStateException("일은 1부터 31까지 가능합니다.");
+        }
+    }
+
+    private Question(String content, Integer questionMonth, Integer questionDay) {
+        this.content = content;
+        this.questionMonth = questionMonth;
+        this.questionDay = questionDay;
+    }
 
 }
