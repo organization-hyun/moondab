@@ -2,6 +2,7 @@ package com.hyun.moondab.domain.question;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -23,7 +24,7 @@ public class Question {
 
     public static Question create(int questionMonth, int questionDay, String content) {
         validateDate(questionMonth, questionDay);
-        return new Question(content, questionMonth, questionDay);
+        return new Question(questionMonth, questionDay, content);
     }
 
     private static void validateDate(int questionMonth, int questionDay) {
@@ -35,10 +36,11 @@ public class Question {
         }
     }
 
-    private Question(String content, Integer questionMonth, Integer questionDay) {
-        this.content = content;
+    @Builder
+    private Question(Integer questionMonth, Integer questionDay, String content) {
         this.questionMonth = questionMonth;
         this.questionDay = questionDay;
+        this.content = content;
     }
 
 }
